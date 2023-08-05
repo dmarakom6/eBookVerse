@@ -16,20 +16,20 @@
 
 # Start a new django project
 
-1. django-admin startproject ebookverse .
-2. python manage.py runserver -- There is a warning about unapplied migrations
+1. `django-admin startproject ebookverse .`
+2. `python manage.py runserver` -- There is a warning about unapplied migrations
 3. Open settings.py and remove unnecessary apps: admin, auth, contenttypes. You will also need to remove:
 - the middleware that comes from these apps.
 - the admin url from urls.py
 
 # Create the database
 
-1. python manage.py migrate -- Create the sqlite database and apply migrations to bring the db schema up to date.
+1. `python manage.py migrate` -- Create the sqlite database and apply migrations to bring the db schema up to date.
 2. Add db.sqlite3 to .gitignore
 
 # Run the project
 
-1. python manage.py runserver
+1. `python manage.py runserver`
 
 # Create a new app for the store
 
@@ -47,14 +47,14 @@ Django projects comprise of one or more apps. We need to create an app that will
 - Each field is represented by an instance of a Field class. Several Field classes are provided by django.db.models. You can find the full list of field types here: https://docs.djangoproject.com/en/4.2/ref/models/fields/#field-types
 - The name of each Field instance is the name of the database column
 
-2. python manage.py makemigrations -- Every time we change the models, we need to create a migration file that will be used to apply the changes to the database. The makemigrations command automatically creates, names and numbers the migration file.
-3. python manage.py sqlmigrate store 0001 -- If you like, you can use this command to inspect the sql that will actually be sent to the database when you run the migrate command on step 4.
-4. python manage.py migrate -- Apply the migration to the database. This will create the tables for the models in the database. It will also add a row to the django_migrations table to keep track of which migrations have been applied to the database.
+2. `python manage.py makemigrations` -- Every time we change the models, we need to create a migration file that will be used to apply the changes to the database. The makemigrations command automatically creates, names and numbers the migration file.
+3. `python manage.py sqlmigrate store 0001` -- If you like, you can use this command to inspect the sql that will actually be sent to the database when you run the migrate command on step 4.
+4. `python manage.py migrate` -- Apply the migration to the database. This will create the tables for the models in the database. It will also add a row to the django_migrations table to keep track of which migrations have been applied to the database.
 
 # Add the first book to the database
 
-You can create model instances from the django shell
-1. python manage.py shell
+You can create model instances from the django shell. The django shell is a python shell that has access to the django project.
+1. `python manage.py shell`
 
 ```python
 from store.models import *
