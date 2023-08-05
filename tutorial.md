@@ -81,3 +81,27 @@ book.topics.add(Topic.objects.create(name='Fiction'))
 You can learn about the django orm syntax here:
 - https://www.codecademy.com/learn/data-in-django/modules/django-models-and-databases/cheatsheet
 - https://docs.djangoproject.com/en/4.2/topics/db/queries/
+
+# Add the first view and template
+
+A view is a function that accepts the request and returns a response. A template is an html file that is rendered by a view.
+
+Django templates are html files that are enriched with django template tags. You can find more info about django templates here: https://docs.djangoproject.com/en/4.2/ref/templates/language/
+
+1. Create store/urls.py include it in ebookverse/urls.py
+2. Create a view named index in store/views.py. Import it in store/urls.py and associate it with the root url path.
+3. Create a template in store/templates/index.html and render it from the index view.
+
+# Reuse the same base layout for multiple templates
+
+1. Create a base.html template in store/templates/base.html.
+2. Move the common html from index.html to base.html
+4. Use the {% extends %} template tag to extend base.html in index.html
+3. Use the {% block %} template tag to define a block in base.html and override it in index.html
+
+# Serve static files
+
+The static directory is for files that need to be served by the web server directly, not through django views. These include css, js, images, fonts and other static files.
+
+1. Create directory store/static and add css, js, images, fonts and other static files to it.
+2. In your html templates, use absolute references to the /static directory. Or even better, use the {% static %} template tag to refer to static files.
