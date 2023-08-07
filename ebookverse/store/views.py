@@ -16,7 +16,8 @@ def product(request, book_id):
     return render(request, 'product.html', {'book': book})
 
 def author(request, author_id):
-    return render(request, 'contributor.html')
+    author = Author.objects.get(id=author_id)
+    return render(request, 'contributor.html', {'author': author})
 
 def editor(request, editor_id):
     return render(request, 'editor.html')
