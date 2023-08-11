@@ -110,7 +110,7 @@ def import_book_data(book_id, book_data):
         description=book_data['description'] or "",
         price_cents=int(book_data['price'] * 100) if book_data['price'] else random.randint(100, 1000),
         cover=cover_file(book_data['cover_url'], filename=book_data["isbn"]),
-        release_year=book_data['release_date'][:4] if book_data['release_date'] else None,
+        release_year=int(book_data['release_date'][:4]) if book_data['release_date'] else None,
         publisher=publisher,
         author=author,
     )

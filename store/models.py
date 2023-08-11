@@ -1,7 +1,7 @@
 from django.db import models
 
 # Database schema:
-# books(id, isbn, title, description, (release_year), price_cents, cover, recommended, 
+# books(id, isbn, title, description, (release_year), price_cents, cover, recommended,
 #    publisher_id, private_download_url)
 # publishers(id, name, base, phone. email, established)
 # topics(id, name)
@@ -18,7 +18,7 @@ class Book(models.Model):
     description = models.TextField()
     price_cents = models.PositiveIntegerField(null=True) # Free ebooks can exist.
     cover = models.ImageField(upload_to='covers/') # Inherits all attributes and methods from FileField, but also validates that the uploaded object is a valid image.
-    release_year = models.PositiveIntegerField(null=False) # Need release year for filter menu
+    release_year = models.PositiveIntegerField(null=True) # Need release year for filter menu
 
     #Relationships with rest of db
     publisher = models.ForeignKey('Publisher', null=True, on_delete=models.DO_NOTHING)
@@ -26,23 +26,21 @@ class Book(models.Model):
     topics = models.ManyToManyField('Topic')
 
 class Author(models.Model):
-    JOB_CHOICES = [
-        ("AU", "Author"),
-        ("GH", "Ghostwriter"),
-        ("TR", "Translator"),
-        ("RE", "Researches"),
-        ("IL", "Illustrator")
-    ]
+    class JobChoices(models.TextChoices):
+        AUTHOR = "AU", "Author"
+        GHOSTWRITER = "GH", "Ghostwriter"
+        TRANSLATOR = "TR", "Translator"
+        RESEARCHER = "RE", "Researcher"
+        ILLUSTRATOR = "IL", "Illustrator"
+
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     born = models.PositiveIntegerField(null=True)
     ethnicity = models.CharField(max_length=255, editable=False, default="Unknown")
-    job = models.CharField(max_length=2, choices=JOB_CHOICES, null=True)
+    job = models.CharField(max_length=2, choices=JobChoices.choices, null=False, default=JobChoices.AUTHOR)
 
 class Publisher(models.Model):
     name = models.CharField(max_length=255)
 
 class Topic(models.Model):
     name = models.CharField(max_length=255)
-
-
