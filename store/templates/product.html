@@ -19,8 +19,7 @@
     <div class="col-1-2">
         <div class="product-wrap">
             <div class="product-cover">
-                <img src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1695254400&v=beta&t=XlKOyOx935bx2PaDehGjS70e5kdU5-W-pP1Kh1jGAwM"
-                    alt="" />
+                <img src="{{ book.cover.url }}" alt="" />
             </div>
         </div>
     </div>
@@ -29,7 +28,7 @@
         <div class="product-info">
             <h2>{{ book.title }}</h2>
             <div class="desc">
-                {{ book.description }}
+                {{ book.description|safe }}
             </div>
             <ul class="info-list">
                 <li class="info">
