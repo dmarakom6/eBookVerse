@@ -1,5 +1,9 @@
 from django.shortcuts import render
 
+from store.models import *
+
+# Create your views here.
+
 def index(request):
     return render(request, 'index.html')
 
@@ -7,7 +11,13 @@ def browse(request):
     return render(request, 'browse.html')
 
 def product(request, book_id):
-    # Go to the database and get the book with the given id
-    # Pass the book to the template
-    # If book doesn't exist, return a 404
-    return render(request, 'product.html')
+    book = Book.objects.get(id=book_id)
+    book.price_cents = '{:,.2f}'.format(book.price_cents/100) #convert to euro
+    return render(request, 'product.html', {'book': book})
+
+def author(request, author_id):
+    author = Author.objects.get(id=author_id)
+    return render(request, 'contributor.html', {'author': author})
+
+def editor(request, editor_id):
+    return render(request, 'editor.html')

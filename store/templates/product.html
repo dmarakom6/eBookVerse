@@ -27,26 +27,24 @@
 
     <div class="col-1-2">
         <div class="product-info">
-            <h2>The Art of Doing Nothing</h2>
+            <h2>{{ book.title }}</h2>
             <div class="desc">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam laboriosam iure non unde voluptatem
-                libero, nostrum modi tempora id excepturi ipsum facilis neque quis! Saepe similique dolores
-                voluptatem veniam neque.
+                {{ book.description }}
             </div>
             <ul class="info-list">
                 <li class="info">
-                    <h3>Topic</h3><a href="">Self-Help</a>
+                    <h3>Topic</h3><a href="">{{ book.topics }}</a>
                 </li>
                 <li class="info">
-                    <h3>Authors</h3><a href="">Stelios Karabasakis</a>
+                    <h3>Authors</h3><a href="">{{ book.author }}</a>
                 </li>
                 <li class="info">
-                    <h3>Publisher</h3><a href="">Laughing Lotus</a>
+                    <h3>Publisher</h3><a href="">{{ book.publisher }}</a>
                 </li>
             </ul>
             <div class="add-to-cart">
                 <a href="" class="button">Add to Cart</a>
-                <p id="price">&euro;29,99</p>
+                <p id="price">&euro;{{ book.price_cents }}</p>
             </div>
         </div>
 
