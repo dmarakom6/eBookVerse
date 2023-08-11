@@ -32,13 +32,24 @@
             </div>
             <ul class="info-list">
                 <li class="info">
-                    <h3>Topic</h3><a href="">{{ book.topics }}</a>
+                    <h3>Topic</h3>
+                    <span>
+                        {% for topic in book.topics.all %}
+                            <a href="">{{ topic.name }}</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </span>
                 </li>
                 <li class="info">
-                    <h3>Authors</h3><a href="">{{ book.author }}</a>
+                    <h3>Authors</h3>
+                    <span>
+                        <a href="">{{ book.author.name }}</a>
+                    </span>
                 </li>
                 <li class="info">
-                    <h3>Publisher</h3><a href="">{{ book.publisher }}</a>
+                    <h3>Publisher</h3>
+                    <span>
+                        <a href="">{{ book.publisher.name }}</a>
+                    </span>
                 </li>
             </ul>
             <div class="add-to-cart">

@@ -33,6 +33,9 @@ class Author(models.Model):
         RESEARCHER = "RE", "Researcher"
         ILLUSTRATOR = "IL", "Illustrator"
 
+    def name(self):
+        return f"{self.first_name} {self.last_name}"
+
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     born = models.PositiveIntegerField(null=True)
