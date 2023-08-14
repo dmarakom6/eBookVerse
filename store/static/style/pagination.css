@@ -8,11 +8,11 @@
     background: inherit;
     color: var(--gold);
   }
-  
+
   ul {
     list-style-type: none;
   }
-  
+
   .items-list {
     max-width: 90vw;
     margin: 2rem;
@@ -50,7 +50,7 @@
     margin-top: 1rem;
     color: var(--black);
   }
-  
+
   .page {
     display: flex;
     justify-content: center;
@@ -65,7 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.8rem;
+    margin: 0 0.8rem;
     font-size: 1.4rem;
     cursor: pointer;
   }
@@ -80,11 +80,19 @@
     height: 2.6rem;
     border-radius: 0.4rem;
   }
-  .page__numbers:hover {
-    color: var(--white);
+
+  .page__numbers a {
+    padding: 0;
+    color: var(--gold);
+    /* text-decoration: none; */
+    transition: all 0.3s ease;
   }
-  .page__numbers.active {
-    color: #ffffff;
+
+  .page__numbers a:hover {
+    color: var(--white) !important;
+  }
+  .page__numbers.active span {
+  color: #ffffff !important;
     font-weight: 800;
   }
   .page__btn span{
@@ -116,4 +124,3 @@
   }
 
   }
-  

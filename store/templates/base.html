@@ -30,17 +30,17 @@
         <div class="menu-icon">
             <span class="fas fa-bars"></span>
         </div>
-        <div class="logo"><a href="">
+        <div class="logo"><a href="{% url "index" %}">
                 eBookVerse</a></div>
 
         <div class="nav-content">
             <div class="nav-items">
                 <div class="inner-logo">
-                    <a href="">
+                    <a href="{% url "index" %}">
                         eBookVerse</a>
                 </div>
                 <ul>
-                    <li><a href="/books">Browse</a></li>
+                    <li><a href="{% url "browse" %}">Browse</a></li>
                     <li><a href="#">About us</a></li>
 
             </div>

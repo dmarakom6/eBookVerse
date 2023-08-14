@@ -25,6 +25,9 @@ class Book(models.Model):
     author = models.ForeignKey('Author', on_delete=models.DO_NOTHING)
     topics = models.ManyToManyField('Topic')
 
+    def price(self):
+        return f"€{'{:,.2f}'.format(self.price_cents/100)}"
+
 class Author(models.Model):
     class JobChoices(models.TextChoices):
         AUTHOR = "AU", "Author"

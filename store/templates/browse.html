@@ -67,112 +67,24 @@
   </div>
 
   <ul class="cards">
+    {% for book in books.object_list %}
     <li class="cards_item">
       <div class="card">
+        {% if book.cover %}
         <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
+          src="{{ book.cover.url }}">
+        {% else %}
+        <img src="/static/assets/img/placeholder.png">
+        {% endif %}
+        <p class="contributor">{{ book.author.name }}</p>
 
-        <h1>The Art of Doing Nothing</h1>
+        <h1>{{ book.title }}</h1>
 
-        <p class="price">&euro;29,99</p>
+        <p class="price">{{ book.price }}</p>
         <p><button>View</button></p>
       </div>
     </li>
-
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-    <li class="cards_item">
-      <div class="card">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQEOAXbtvOFuVg/profile-displayphoto-shrink_200_200/0/1674503178502?e=1693440000&v=beta&t=aDJEf2k3PH4uJIbHsNMZ6G17eX0RAgJ4NPjC0yW62Hw">
-        <p class="contributor">Stelios Karabasakis</p>
-
-        <h1>The Art of Doing Nothing</h1>
-
-        <p class="price">&euro;29,99</p>
-        <p><button>View</button></p>
-      </div>
-    </li>
-
-
+    {% endfor %}
   </ul>
 
 
@@ -183,17 +95,38 @@
 <!-- Pagination -->
 <div id="pagination" class="container">
   <ul class="page">
-    <li class="page__btn"><span class="fas fa fa-arrow-left"></span></li>
-    <li class="page__numbers"> 1</li>
-    <li class="page__numbers active">2</li>
-    <li class="page__numbers">3</li>
-    <li class="page__numbers">4</li>
-    <li class="page__numbers">5</li>
-    <li class="page__numbers">6</li>
-    <li class="page__dots">...</li>
-    <li class="page__numbers"> 10</li>
-    <li class="page__btn"><span class="fas fa fa-arrow-right"></span></li>
+
+
+
+    <li class="page__btn">
+      {% if books.has_previous %}
+      <a href="?page={{ books.previous_page_number }}">
+        <span class="fas fa fa-arrow-left">
+      </a>
+      {% endif %}
+    </li>
+    {% for page in books.paginator.page_range %}
+    {% if page == books.number %}
+    <li class="page__numbers active">
+      <span href="?page={{ page }}">{{ page }}</span>
+    </li>
+    {% else %}
+    <li class="page__numbers">
+      <a href="?page={{ page }}">{{ page }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    <li class="page__btn">
+      {% if books.has_next %}
+      <a href="?page={{ books.next_page_number }}">
+        <span class="fas fa fa-arrow-right">
+      </a>
+      {% endif %}
+    </li>
   </ul>
 </div>
+
+<!-- <li class="page__dots">...</li> -->
+
 
 {% endblock %}
