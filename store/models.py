@@ -1,5 +1,7 @@
 from django.db import models
 
+from decimal import Decimal
+
 # Database schema:
 # books(id, isbn, title, description, (release_year), price_cents, cover, recommended,
 #    publisher_id, private_download_url)
@@ -26,7 +28,11 @@ class Book(models.Model):
     topics = models.ManyToManyField('Topic')
 
     def price(self):
-        return f"€{'{:,.2f}'.format(self.price_cents/100)}"
+        # return f"€{'{:,.2f}'.format(self.price_cents/100)}"
+        return Decimal(self.price_cents) / Decimal(100)
+
+    def price_with_currency(self):
+        return f"€{self.price()}"
 
 class Author(models.Model):
     class JobChoices(models.TextChoices):
@@ -50,3 +56,28 @@ class Publisher(models.Model):
 
 class Topic(models.Model):
     name = models.CharField(max_length=255)
+
+class Cart(models.Model):
+    items = models.ManyToManyField('Book')
+
+    def __len__(self):
+        if self.id:
+            return self.items.count()
+        else:
+            return 0
+
+    def __iter__(self):
+        if self.id:
+            return iter(self.items.all())
+        else:
+            return iter([])
+
+    def isempty(self):
+            return len(self) == 0
+
+    def price(self):
+        return sum([item.price() for item in self])
+
+
+    def price_with_currency(self):
+        return f"€{self.price()}"

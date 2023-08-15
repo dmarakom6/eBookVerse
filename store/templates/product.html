@@ -53,8 +53,12 @@
                 </li>
             </ul>
             <div class="add-to-cart">
-                <a href="" class="button">Add to Cart</a>
-                <p id="price">{{ book.price }}</p>
+                <form method="POST" action="{% url 'add_to_cart' %}">
+                    {% csrf_token %}
+                    <input type="hidden" value=" {{ book.id }}" name="book_id"/>
+                    <button type="submit" class="button">Add to Cart</button>
+                </form>
+                <p id="price">{{ book.price_with_currency }}</p>
             </div>
         </div>
 
