@@ -48,8 +48,6 @@ def add_to_cart(request):
     cart_id = request.session.get('cart_id', None)
     if cart_id:
         cart = Cart.objects.get(id=cart_id)
-
-
     else:
         cart = Cart.objects.create()
         request.session['cart_id'] = cart.id
@@ -57,14 +55,23 @@ def add_to_cart(request):
     cart.items.add(book)
     return redirect('product', book_id=book_id)
 
-def remove_from_cart(request):
-    book_id = int(request.POST.get('book_id'))
+def remove_from_cart(request, book_id):
     book = get_object_or_404(Book, id=book_id)
 
     cart_id = request.session.get('cart_id', None)
     if cart_id:
         cart = Cart.objects.get(id=cart_id)
         cart.items.remove(book)
+
+    referrer = request.META.get('HTTP_REFERER', '/')
+    return redirect(referrer)
+
+def delete_cart(request):
+    cart_id = request.session.get('cart_id', None)
+    if cart_id:
+        cart = Cart.objects.get(id=cart_id)
+        cart.delete()
+        del request.session['cart_id']
 
     referrer = request.META.get('HTTP_REFERER', '/')
     return redirect(referrer)

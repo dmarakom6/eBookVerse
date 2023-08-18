@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block canonical_url %}
+<link rel="canonical" href="{% url 'browse' %}">
+{% endblock %}
+
 {% block head %}
 <link rel="stylesheet" href="/static/style/browse.css">
 <link rel="stylesheet" href="/static/style/card.css">
@@ -81,7 +85,7 @@
         <h1>{{ book.title }}</h1>
 
         <p class="price">{{ book.price }}</p>
-        <p><button>View</button></p>
+        <p><a href="{% url 'product' book_id=book.id %}">View</a></p>
       </div>
     </li>
     {% endfor %}

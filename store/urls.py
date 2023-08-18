@@ -9,5 +9,9 @@ urlpatterns = [
     path('books/<int:book_id>', views.product, name='product'),
     path('authors/<int:author_id>', views.author, name='author'),
     path('publishers/<int:editor_id>', views.editor, name='publisher'),
-    path('cart', views.add_to_cart, name='add_to_cart')
+    path('cart', views.add_to_cart, name='add_to_cart'),
+    path('cart/delete', views.delete_cart, name='delete_cart'),
+    path('cart/<int:book_id>/remove', views.remove_from_cart, name='remove_from_cart')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# RESTful

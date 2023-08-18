@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
+    {% block canonical_url %}{% endblock %}
+
     <link rel="stylesheet" href="/static/style/theme.css">
     <link rel="stylesheet" href="/static/style/header.css">
     <link rel="stylesheet" href="/static/style/navbar.css">
@@ -53,7 +55,7 @@
                 <div class="dropdown-menu">
                     <div class="cart-title-container">
                         <h1 class="cart-title">Cart</h1>
-                        <a id='empty' href='#'><i class='fa fa-trash-alt'></i></a>
+                        <a id='empty' href='{% url "delete_cart" %}'><i class='fa fa-trash-alt'></i></a>
                     </div>
 
                     <div id='cart-popup'>
@@ -72,7 +74,7 @@
 
                                 </div>
 
-                                <a class='cart-item-close' href='#'>
+                                <a class='cart-item-close' href='{% url "remove_from_cart" item.id %}'>
                                     ×
                                 </a>
 
