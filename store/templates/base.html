@@ -112,8 +112,8 @@
             <span class="fas fa-times"></span>
         </div>
         </ul>
-        <form class="form-container" action="#">
-            <input type="search" class="search-data" placeholder="Search titles, contributors, ISBN..." required>
+        <form class="form-container" method="GET" action="{% url 'browse' %}">
+            <input type="search" name="q" value="{% if 'q' in request.GET %}{{ request.GET.q }}{% endif %}" class="search-data" placeholder="Search titles, contributors, ISBN..." required>
             <button type="submit" class="fas fa-search"></button>
         </form>
     </nav>

@@ -21,17 +21,22 @@
 
   <div class="widget user_widget_search">
     <h2>Filter By</h2>
-    <form id="user_widget_search_form" class="user_widget_search_form" method="GET">
+    <form id="user_widget_search_form" class="user_widget_search_form" method="GET" action="{% url 'browse' %}">
       <div class="form-group">
         <label for="user_term">Search Term</label>
-        <input type="email" class="form-control" id="user_name" placeholder="Title, contributor, ISBN...">
+        <input type="text" name="q" value="{% if 'q' in request.GET %}{{ request.GET.q }}{% endif %}" class="form-control" id="book_search" placeholder="Title, contributor, ISBN...">
       </div>
       <div class="form-group">
         <label for="user_topic">Topic</label>
-        <select class="form-control custom-select" id="user_gender">
+        <select name="topic_id" class="form-control custom-select" id="user_gender">
           <option></option>
-          <option>This</option>
-          <option>That</option>
+          {% for topic in topics %}
+            {% if 'topic_id' in request.GET and topic.id == request.GET.topic_id|add:"0" %}
+            <option selected value="{{ topic.id }}">{{ topic.name }}</option>
+            {% else %}
+            <option value="{{ topic.id }}">{{ topic.name }}</option>
+            {% endif %}
+          {% endfor %}
         </select>
       </div>
       <div class="form-group">
@@ -65,7 +70,7 @@
         </label>
       </div>
       <div class="form-group">
-        <a href="#">Submit</a>
+        <button type="submit">Submit</button>
       </div>
     </form>
   </div>
