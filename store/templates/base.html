@@ -91,7 +91,7 @@
                             <p>Subtotal:</p>
                             <p>{{ cart.price_with_currency }}</p>
                         </div>
-                        <a id='checkout' href='checkout.html'>Checkout</a>
+                        <a id='checkout' href='{% url "checkout" %}'>Checkout</a>
                     </div>
                 </div>
                 {% endif %}

@@ -90,9 +90,28 @@ class Cart(models.Model):
     def isempty(self):
             return len(self) == 0
 
+    def price_cents(self):
+        return sum([item.price_cents for item in self])
+
     def price(self):
         return sum([item.price() for item in self])
 
+    def price_with_currency(self):
+        return f"€{self.price()}"
+
+class Order(models.Model):
+    name = models.CharField(max_length=255)
+    price_cents = models.PositiveIntegerField(null=False)
+    items = models.ManyToManyField('Book')
+
+    def __len__(self):
+        return self.items.count()
+
+    def __iter__(self):
+        return iter(self.items.all())
+
+    def price(self):
+        return Decimal(self.price_cents) / Decimal(100)
 
     def price_with_currency(self):
         return f"€{self.price()}"

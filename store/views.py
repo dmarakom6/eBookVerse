@@ -93,3 +93,28 @@ def delete_cart(request):
 
     referrer = request.META.get('HTTP_REFERER', '/')
     return redirect(referrer)
+
+def checkout(request):
+    try:
+        cart_id = request.session.get('cart_id')
+        cart = Cart.objects.get(id=cart_id)
+        if cart.isempty():
+            raise Exception("Cart is empty")
+    except:
+        return redirect('index')
+
+    if request.method == "GET":
+        return render(request, 'checkout.html')
+    elif request.method == "POST":
+        order = Order.objects.create(
+            name=request.POST.get('name'),
+            price_cents=cart.price_cents()
+        )
+        order.items.set(cart.items.all())
+        cart.delete()
+        del request.session['cart_id']
+        return redirect('order', order_id=order.id)
+
+def order(request, order_id):
+    order = Order.objects.get(id=order_id)
+    return render(request, 'order.html', {'order': order})

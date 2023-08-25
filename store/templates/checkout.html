@@ -1,23 +1,19 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<head>
-  <script src="https://unpkg.com/akar-icons-fonts"></script>
-  <link rel="stylesheet" href="style/checkout.css">
-  <link rel="stylesheet" href="">
-  <link rel="shortcut icon" href="" />
-</head>
+<link rel="stylesheet" href="/static/style/checkout.css">
 {% endblock %}
 
 {% block content %}
 
   <div class="flex-center">
     <h1 class="title">Checkout</h1>
-    <form class="popup flex p-lg">
+    <form class="popup flex p-lg" action="{% url 'checkout' %}" method="post">
+      {% csrf_token %}
       <div class="close-btn pointer flex-center p-sm">
         <i class="ai-cross"></i>
       </div>
-      
+
         <!-- CARD FORM -->
         <div class="flex-fill flex-just-center flex-vertical">
           <div class="header flex-between flex-vertical-center">
@@ -29,17 +25,17 @@
             </div>
           </div>
           <div class="card-data flex-just-center flex-vertical">
-            
+
             <!-- Card Number -->
-            
+
               <div class="card-property-title">
                 <strong id="title">Pay via PayPal</strong>
                 <span id="title">Click the button below to complete your purchase</span>
-              
-              
+
+
             </div>
-            
-            
+
+
             <!-- Name -->
             <div id="name" class="flex-between">
               <div class="card-property-title">
@@ -48,28 +44,28 @@
               </div>
               <div class="card-property-value">
                 <div class="input-container">
-                  <input id="name" data-bound="name_mock" data-def="Mr. Cardholder" type="text" class="uppercase" placeholder="">
+                  <input id="name" name="name" data-bound="name_mock" data-def="Mr. Cardholder" type="text" class="uppercase" placeholder="">
                   <i class="ai-person"></i>
                 </div>
               </div>
             </div>
-            
-            
+
+
           </div>
           <div class="action flex-center">
-            <!-- <button type="submit" class="b-main-color pointer">Pay Now</button> -->
-            <script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR"></script>
-            <div id="paypal-button-container"></div>
+            <button type="submit" class="b-main-color pointer">Pay Now</button>
+            <!-- <script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR"></script>
+            <div id="paypal-button-container"></div> -->
           </div>
         </div>
-      
+
         <!-- SIDEBAR -->
         <div class="sidebar flex-vertical">
           <div>
-          
+
           </div>
           <div class="purchase-section flex-fill flex-vertical">
-            
+
             <div class="card-mockup flex-vertical">
               <div class="flex-fill flex-between">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#cc9933}</style><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></svg>
@@ -89,30 +85,30 @@
                   <strong class="size-md">
                     <span id="date">00/00</span>
                   </strong>
-                                 
-                
-  
+
+
+
                 </div>
               </div>
             </div>
-            
+
             <ul class="purchase-props">
               <li class="flex-between">
                 <span>Payment Method</span>
                 <strong>PayPal</strong>
               </li>
-              <li class="flex-between">
+              <!-- <li class="flex-between">
                 <span>Order ID</span>
                 <strong>429252965</strong>
-              </li>
+              </li> -->
               <li class="flex-between">
                 <span>Products</span>
-                <strong>4</strong>
+                <strong>{{ cart|length }}</strong>
               </li>
-              <li class="flex-between">
+              <!-- <li class="flex-between">
                 <span>VAT (20%)</span>
                 <strong>&euro;100.00</strong>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="separation-line"></div>
@@ -120,8 +116,8 @@
             <div class="flex-fill flex-vertical">
               <div class="total-label f-secondary-color">You have to Pay</div>
               <div>
-                <strong>549</strong>
-                <small>.99 <span class="f-secondary-color">Euro</span></small>
+                <strong>{{ cart.price }}</strong>
+                <small><span class="f-secondary-color">Euro</span></small>
               </div>
             </div>
             <i class="ai-coin size-lg"></i>
@@ -129,26 +125,26 @@
         </div>
     </d>
   </div>
-  
 
 
 
-    
 
 
 
-  
+
+
+
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src=" assets/js/navbar-light.js"></script>
-  <script src=" assets/js/currentYear.js"></script>
-  <script src=" assets/js/inputToCardMockup.js"></script>
+  <script src="/static/assets/js/navbar-light.js"></script>
+  <script src="/static/assets/js/currentYear.js"></script>
+  <script src="/static/assets/js/inputToCardMockup.js"></script>
 
   <script>
 
     paypal.Buttons({
 
-        
+
 
       // Order is created on the server and the order id is returned
 
@@ -242,8 +238,8 @@
 
   </script>
 
-  <script src="assets/js/get-date.js"></script>
-  <script src="assets/js/random-number.js"></script>
+  <script src="/static/assets/js/get-date.js"></script>
+  <script src="/static/assets/js/random-number.js"></script>
 
 
-  {% enblock %}
+  {% endblock %}
