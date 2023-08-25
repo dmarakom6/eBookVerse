@@ -125,3 +125,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = 'store/images/'
 MEDIA_URL = '/images/'
+
+AWS_S3_PROFILE_NAME='ebookverse'
+AWS_S3_BUCKET_NAME='ebookverse-dev-1'

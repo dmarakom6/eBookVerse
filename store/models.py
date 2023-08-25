@@ -1,6 +1,9 @@
 from django.db import models
 
 from decimal import Decimal
+from django.conf import settings
+
+import boto3
 
 # Database schema:
 # books(id, isbn, title, description, (release_year), price_cents, cover, recommended,
@@ -21,6 +24,7 @@ class Book(models.Model):
     price_cents = models.PositiveIntegerField(null=True) # Free ebooks can exist.
     cover = models.ImageField(upload_to='covers/') # Inherits all attributes and methods from FileField, but also validates that the uploaded object is a valid image.
     release_year = models.PositiveIntegerField(null=True) # Need release year for filter menu
+    private_download_url = models.CharField(max_length=255, null=False, default="books/test.pdf")
 
     #Relationships with rest of db
     publisher = models.ForeignKey('Publisher', null=True, on_delete=models.DO_NOTHING)
@@ -33,6 +37,17 @@ class Book(models.Model):
 
     def price_with_currency(self):
         return f"€{self.price()}"
+
+    def download_url(self):
+        s3_client = boto3.Session(profile_name=settings.AWS_S3_PROFILE_NAME).client('s3')
+        return s3_client.generate_presigned_url(
+            ClientMethod='get_object',
+            Params={
+                'Bucket': settings.AWS_S3_BUCKET_NAME,
+                'Key': self.private_download_url,
+            },
+            ExpiresIn=300 # 5 minutes
+        )
 
 class Author(models.Model):
     class JobChoices(models.TextChoices):
