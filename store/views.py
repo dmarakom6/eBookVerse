@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib import messages
 
 from math import ceil
 
@@ -68,6 +69,7 @@ def add_to_cart(request):
         request.session['cart_id'] = cart.id
 
     cart.items.add(book)
+    messages.success(request, f'Successfully added "{book.title}" to your cart!', extra_tags="ItemAdded")
     return redirect('product', book_id=book_id)
 
 def remove_from_cart(request, book_id):
@@ -78,6 +80,7 @@ def remove_from_cart(request, book_id):
         cart = Cart.objects.get(id=cart_id)
         cart.items.remove(book)
 
+    messages.success(request, f'Successfully removed "{book.title}" from your cart!', extra_tags="ItemRemoved")
     referrer = request.META.get('HTTP_REFERER', '/')
     return redirect(referrer)
 
