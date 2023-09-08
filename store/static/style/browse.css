@@ -146,15 +146,17 @@ input[type="checkbox"]:checked::before {
   line-height: 1.6em;
 }
 
-.widget a {
+.button {
+  background-color: var(--black);
   padding: 8px;
   border: 1px solid var(--gold);
   border-radius: .24em;
+  font-size: 1em;
   color: var(--gold);
   transition: all ease-in-out .2s;
 }
 
-.widget a:hover {
+.button:hover {
   cursor: pointer;
   color: var(--black);
   /* border: 1.2px solid var(--gold); */

@@ -8,11 +8,11 @@
     background: inherit;
     color: var(--gold);
   }
-
+  
   ul {
     list-style-type: none;
   }
-
+  
   .items-list {
     max-width: 90vw;
     margin: 2rem;
@@ -34,7 +34,7 @@
     cursor: pointer;
   }
   .item span {
-    background: var(--black);
+    background: var(--gold) !important;
     box-shadow: 0 0.8rem 2rem rgba(90, 97, 129, 0.05);
     border-radius: 0.6rem;
     padding: 2rem;
@@ -42,7 +42,6 @@
     transition: all 0.3s ease;
   }
   .item:hover span {
-    transform: scale(1.2);
     color: var(--black);
   }
   .item p {
@@ -50,7 +49,7 @@
     margin-top: 1rem;
     color: var(--black);
   }
-
+  
   .page {
     display: flex;
     justify-content: center;
@@ -65,7 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 0.8rem;
+    margin: 0.8rem;
     font-size: 1.4rem;
     cursor: pointer;
   }
@@ -81,18 +80,14 @@
     border-radius: 0.4rem;
   }
 
-  .page__numbers a {
-    padding: 0;
-    color: var(--gold);
-    /* text-decoration: none; */
-    transition: all 0.3s ease;
-  }
-
   .page__numbers a:hover {
-    color: var(--white) !important;
+    color: var(--gold);
   }
-  .page__numbers.active span {
-  color: #ffffff !important;
+  .page__numbers:hover {
+    color: var(--white);
+  }
+  .page__numbers.active {
+    color: #ffffff;
     font-weight: 800;
   }
   .page__btn span{
@@ -120,7 +115,8 @@
 
   .page, .page * {
     max-width: 90vw;
-    font-size: 1em;
+    /* font-size: 1em; */
   }
 
   }
+  

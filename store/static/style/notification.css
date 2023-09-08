@@ -14,12 +14,7 @@
     box-shadow: 0px 2px 8px rgba(32, 37, 50, 0.08), 0px 2px 4px rgba(32, 37, 50, 0.03);
     border-radius: 6px;
     width: 360px;
-    opacity: 1;
-    transition: all 0.6s;
-}
-
-.notification-card.hidden {
-    opacity: 0;
+    transition: all 0.3s;
 }
 
 .notification-card .title h1 {

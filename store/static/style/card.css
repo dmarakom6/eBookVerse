@@ -15,13 +15,24 @@
       box-shadow: 0 0 9px var(--black-shadow)
     }
 
-    .card h1 {
+    .card .title-container {
+      height: 5rem; /* Set a max height for two lines of text */
+      overflow-x: hidden;
+      overflow-y: visible;
+    }
+    
+    .card .title {
+      white-space: nowrap;
+      overflow-x: hidden;
+      overflow-y: visible;
+      text-overflow: ellipsis;
       font-weight: 500;
       padding: 10px;
     }
+    
 
     .card img {
-      max-height: 370px;
+      height: 22.5rem;
       width: 100%;
     }
 
@@ -36,7 +47,9 @@
       padding-left: 1.5em;
     }
 
-    .card button {
+    .card p a {
+      position: relative;
+      display: block;
       border: none;
       outline: 0;
       padding: 12px;
@@ -48,7 +61,7 @@
       font-size: 18px;
     }
 
-    .card button:hover {
+    .card p a:hover {
       color: var(--black);
       background-color: var(--gold);
     }

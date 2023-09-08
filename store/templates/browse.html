@@ -70,7 +70,7 @@
         </label>
       </div>
       <div class="form-group">
-        <button type="submit">Submit</button>
+        <button type="submit" class="button">Submit</button>
       </div>
     </form>
   </div>
@@ -80,18 +80,20 @@
     <li class="cards_item">
       <div class="card">
         {% if book.cover %}
-        <img
-          src="{{ book.cover.url }}">
+        <img src="{{ book.cover.url }}">
         {% else %}
         <img src="/static/assets/img/placeholder.png">
         {% endif %}
         <p class="contributor">{{ book.author.name }}</p>
-
-        <h1>{{ book.title }}</h1>
-
+      
+        <div class="title-container">
+          <h1 class="title">{{ book.title }}</h1>
+        </div>
+      
         <p class="price">{{ book.price }}</p>
         <p><a href="{% url 'product' book_id=book.id %}">View</a></p>
       </div>
+      
     </li>
     {% endfor %}
   </ul>
