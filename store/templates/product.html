@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load truncate_description %}
+
 {% block head %}
 <link rel="stylesheet" href="/static/style/frameworks/slick-1.8.1/slick/slick.css" />
 <link rel="stylesheet" href="/static/style/frameworks/slick-1.8.1/slick/slick-theme.css" />
@@ -28,7 +30,7 @@
         <div class="product-info">
             <h2>{{ book.title }}</h2>
             <div class="desc">
-                {{ book.description|safe }}
+                {{ book.description|truncate_middle|safe }}
             </div>
             <ul class="info-list">
                 <li class="info">
